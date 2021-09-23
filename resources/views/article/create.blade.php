@@ -50,9 +50,6 @@
         </div> 
 
    <button type="submit" class="btn btn-primary">Salva</button>
-   <!-- <span class="button-create">
-          <a href="{{ route('articles.show')}}"><button class="button-new-p" class="bi bi-calendar-plus">Come back</button>  
-    </span>  -->
 </form>
 
 
