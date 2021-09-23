@@ -13,7 +13,7 @@
         </div>
     @endif
 
-    <h1>Aggiungi un nuovo Articolo</h1>
+    <h1>AGGIUNGI UN TUO NUOVO ARTICOLO</h1>
 
     <form action="{{ route('articles.store') }}" method="POST">
         @csrf
@@ -50,8 +50,10 @@
         </div> 
 
    <button type="submit" class="btn btn-primary">Salva</button>
-
-    </form>
+   <!-- <span class="button-create">
+          <a href="{{ route('articles.show')}}"><button class="button-new-p" class="bi bi-calendar-plus">Come back</button>  
+    </span>  -->
+</form>
 
 
 
