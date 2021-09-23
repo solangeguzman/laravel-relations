@@ -32,7 +32,7 @@ class ArticleTableSeeder extends Seeder
         $author->picture=$faker->text(50);
         $author->email = $faker->email();
         $author->save();
-        $authorListID[] = $author;
+        $authorListID[] = $author->id;
       }
 
       for($i=0; $i <50; $i++){
@@ -40,8 +40,8 @@ class ArticleTableSeeder extends Seeder
           $article->title = $faker->sentence();
           $article->cover=$faker->paragraph(50);
           $article->text = $faker->paragraph(50);
-          $ListAuthID= array_rand($authorListID);
-          $article->author_id = $ListAuthID[0]->id;
+          $ListAuthID= array_rand(array_flip($authorListID), 1);
+          $article->author_id = $ListAuthID;
           $article->save();
       }
   }
