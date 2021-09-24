@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use App\Author;
 use App\Article;
+use\App\Tag;
 use Faker\Generator as faker;
 class ArticleTableSeeder extends Seeder
 {
@@ -34,6 +35,32 @@ class ArticleTableSeeder extends Seeder
         $author->save();
         $authorListID[] = $author->id;
       }
+      // $tagList=[
+      //   'scienza',
+      //   'finanza',
+      //   'Stati Esteri',
+      //   'Bitcoin',
+      //   'Sport',
+      //   'Fitness'
+      // ];
+
+      $tagList=[];
+      for($i =0; $i <8; $i++) {
+        $tagObj = new Tag();
+        $tagObj->name = $faker->firstName();
+        $tagObj->surname = $faker->lastName();
+        $tagObj->save();
+        $tagList[] = $tagObj->id;
+
+
+
+      // foreach($tagList as $tag){
+      //   $tagObj = new Tag();
+      //   $tagObj->name = $tag;
+      //   $tagObj->surname = $tag;
+      //   $tagObj->save();
+      //   $tagListID[] = $tagObj->id;
+    }
 
       for($i=0; $i <50; $i++){
           $article = new Article;
@@ -42,6 +69,14 @@ class ArticleTableSeeder extends Seeder
           $article->text = $faker->paragraph(50);
           $ListAuthID= array_rand(array_flip($authorListID), 1);
           $article->author_id = $ListAuthID;
+         
+          $randomTagKeys= array_rand($tagList,2 );
+          $tag1 = $tagList[$randomTagKeys[0]];
+          $tag2 = $tagList[$randomTagKeys[1]];
+          
+          $article->tag()->attach($tag1);
+          $article->tag()->attach($tag2);
+          
           $article->save();
       }
   }
