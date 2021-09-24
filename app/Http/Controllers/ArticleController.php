@@ -26,7 +26,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        $authors = Author::All();
+        $authors = Author::all();
         $tags = Tag::all();
         return view('article.create', compact('authors', 'tags'));
     }
@@ -44,7 +44,8 @@ class ArticleController extends Controller
             'title'=>'required',
             'text'=>'required',
             'cover'=>'nullable',
-            'author_id' =>'required'
+            'author_id' =>'required',
+            'tags'=>'required',
         ]);
         $article = New Article();
         $this->saveArticle($article, $request);
@@ -104,6 +105,12 @@ class ArticleController extends Controller
         $article->cover = $data['cover'];
         $article->author_id = $data['author_id'];
         $article->save();
+
+        if(array_key_exists('tags', $data)) {
+            foreach($data['tags'] as $idTag) {
+                $article->tag()->attach($idTag);
+            }
+        }
     
     }
 }
