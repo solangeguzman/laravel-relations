@@ -73,11 +73,12 @@ class ArticleTableSeeder extends Seeder
           $randomTagKeys= array_rand($tagList,2 );
           $tag1 = $tagList[$randomTagKeys[0]];
           $tag2 = $tagList[$randomTagKeys[1]];
-          
+         
+          $article->save();
           $article->tag()->attach($tag1);
           $article->tag()->attach($tag2);
+
           
-          $article->save();
       }
   }
 }

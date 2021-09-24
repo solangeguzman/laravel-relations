@@ -1,11 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
-.button-create {
-  border: rgba(104, 101, 101, 0.671) solid 2px;
-  border-radius: 10px;
-  background-color: crimson;
-}
-
 /*!
  * Bootstrap v4.6.0 (https://getbootstrap.com/)
  * Copyright 2011-2021 The Bootstrap Authors

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-
+     @dd($tags);
     @if ($errors->any())
         <div class="alert alert-danger">
             <ul>
@@ -34,6 +34,17 @@
                     @foreach($authors as $author)
                         <option value="{{$author->id}}">{{ $author->name }}</option>
                     @endforeach
+ <!-- tags diventa un array di id di tag -->
+                    <!-- @foreach($tags as $tag) 
+                    <input name="tags[]" type="checkbox" value="{{$tag->id}}"><label>{{$tag->name}}{{$tag->surname}}</label>
+                    @endforeach -->
+                    <div class="form-group">
+                @foreach($tags as $tag)
+                <div>
+                    <input name="tags[]" type="checkbox" value="{{ $tag->id }}">
+                    <label>{{$tag->name}} {{$tag->surname}}</label>
+                </div>
+                @endforeach
                 </select>
             </div>
         </div>

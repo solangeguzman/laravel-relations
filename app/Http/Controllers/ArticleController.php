@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Article;
 use App\Author;
+use App\Tag;
 class ArticleController extends Controller
 {
     /**
@@ -26,7 +27,8 @@ class ArticleController extends Controller
     public function create()
     {
         $authors = Author::All();
-        return view('article.create', compact('authors'));
+        $tags = Tag::all();
+        return view('article.create', compact('authors', 'tags'));
     }
 
     /**
