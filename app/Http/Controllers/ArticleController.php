@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\NewArticleCreated;
 use App\Article;
 use App\Author;
 use App\Tag;
@@ -49,6 +51,8 @@ class ArticleController extends Controller
         ]);
         $article = New Article();
         $this->saveArticle($article, $request);
+        // dopo che salva il ns item, inviamo l'email.
+        Mail::to('pippobaudo@test.it')->send(new NewArticleCreated);
         return redirect()->route('articles.show', $article);
     }
  
@@ -72,7 +76,8 @@ class ArticleController extends Controller
      */
     public function edit($id)
     {
-       //
+        $article = Article::find($id);
+        return view('article.show', compact('article'));
     }
 
     /**
