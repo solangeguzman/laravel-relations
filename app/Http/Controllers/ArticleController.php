@@ -52,7 +52,7 @@ class ArticleController extends Controller
         $article = New Article();
         $this->saveArticle($article, $request);
         // dopo che salva il ns item, inviamo l'email.
-        Mail::to('pippobaudo@test.it')->send(new NewArticleCreated);
+        Mail::to('pippobaudo@test.it')->send(new NewArticleCreated($article));
         return redirect()->route('articles.show', $article);
     }
  
